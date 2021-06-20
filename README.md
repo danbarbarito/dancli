@@ -1,6 +1,30 @@
 # dancli - C++ library to quickly and easily create command line applications
 
-This library is basically just a wrapper for `boost::program_options`
+```c++
+#include <dancli/cli.h>
+
+int main(int argc, char *argv[])
+{
+    dancli::CLI cli("example1", "example description");
+    return cli.run(argc, argv);
+}
+```
+
+```
+> ./example1 --help
+
+example1 - example description
+
+usage:
+example1 [--debug] [-h [ --help ]] <command> [<command-options>] [<args>]
+
+commands:
+help - show help menu
+
+options:
+--debug - Turn on debug output
+-h [ --help ] - show help menu
+```
 
 ## Dependencies
 
@@ -16,15 +40,5 @@ This library is basically just a wrapper for `boost::program_options`
 6. `make install`
 
 ## Usage
-
-```c++
-#include <dancli/cli.h>
-
-int main(int argc, char *argv[])
-{
-    dancli::CLI cli("example1", "example description");
-    return cli.run(argc, argv);
-}
-```
 
 Check out the "examples/" directory for more in-depth examples.
