@@ -24,7 +24,7 @@ public:
 
 int main(int argc, char *argv[])
 {
-    dancli::CLI cli("example1", "example description");
+    dancli::CLI cli("myapp", "description for myapp");
     cli.add_command<SpeakCommand>("speak", "have a person say something to the user");
     return cli.run(argc, argv);
 }
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 ```
 > myapp --help
 
-myapp - example description
+myapp - description for myapp
 
 usage:
 myapp [--debug] [-h [ --help ]] <command> [<command-options>] [<args>]
