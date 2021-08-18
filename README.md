@@ -3,6 +3,7 @@
 ```c++
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include <dancli/cli.h>
 #include <dancli/command.h>
@@ -18,16 +19,19 @@ public:
     }
     void run() {
         std::string person = this->command_vm["person"].as<std::string>();
-        std::cout << person << ": Hi!" << std::endl;
+        std::vector<std::string> args = this->global_vm["args"].as<std::vector<std::string>>();
+        std::string statement = args.size() > 0 ? args[0] : "Hi!";
+        std::cout << person << ": " << statement << std::endl;
     };
 };
 
 int main(int argc, char *argv[])
 {
-    dancli::CLI cli("myapp", "description for myapp");
-    cli.add_command<SpeakCommand>("speak", "have a person say something to the user");
+    dancli::CLI cli("example1", "example description");
+    cli.add_command<SpeakCommand>("speak", "have a person say something to the user", "<statement>");
     return cli.run(argc, argv);
 }
+
 
 ```
 
