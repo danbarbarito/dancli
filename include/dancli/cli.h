@@ -25,11 +25,12 @@ public:
     int run(int argc, char *argv[]);
 
     template<class CommandClass>
-    void add_command(std::string command_name, std::string command_description) {
+    void add_command(std::string command_name, std::string command_description, std::string command_additional_usage = "") {
         std::shared_ptr<CommandClass> command = std::make_shared<CommandClass>();
         command->program_name = this->program_name;
         command->command_name = command_name;
         command->command_description = command_description;
+        command->additional_usage = command_additional_usage;
         this->commands.push_back(command);
     };
 

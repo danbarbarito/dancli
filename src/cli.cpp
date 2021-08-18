@@ -16,7 +16,7 @@ dancli::CLI::CLI(std::string program_name, std::string program_description)
             ("debug", "Turn on debug output")
             ("help,h", "show help menu")
             ("command", po::value<std::string>(), "command to execute")
-            ("args", po::value<std::vector<std::string> >(), "Arguments for command");
+            ("args", po::value<std::vector<std::string>>()->default_value(std::vector<std::string>(), ""), "Arguments for command");
 }
 
 int dancli::CLI::run(int argc, char *argv[]) {
@@ -94,7 +94,7 @@ int dancli::CLI::process() {
                     i->usage();
                     return 0;
                 } else {
-                    i->parse(*this->global_parsed);
+                    i->parse(*this->global_parsed, this->global_vm);
                     i->run();
                     return 0;
                 }
